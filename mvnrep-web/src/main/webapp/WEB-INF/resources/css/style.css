@@ -1,0 +1,7 @@
+.doc-header.fixed-top{
+    background-color:#fff;
+    border-bottom:solid 1px #ddd;
+    z-index:2;
+    -webkit-box-shadow:0 3px 6px rgba(0, 0, 0, .175);
+    box-shadow:0 3px 6px rgba(0, 0, 0, .175);
+}

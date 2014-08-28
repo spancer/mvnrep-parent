@@ -1,3 +1,5 @@
-﻿http://search.maven.org/solrsearch/select?q=g%3A%22commons-lang%22%20AND%20a%3A%22commons-lang%22&rows=20&core=gav&wt=json
+﻿http://search.maven.org/solrsearch/select?q=commons-lang&rows=20&wt=json
+
+http://search.maven.org/solrsearch/select?q=g%3A%22commons-lang%22%20AND%20a%3A%22commons-lang%22&rows=20&core=gav&wt=json
 
 http://search.maven.org/remotecontent?filepath=commons-lang/commons-lang/2.6/commons-lang-2.6.jar

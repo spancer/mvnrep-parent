@@ -23,9 +23,17 @@ public class IndexAction {
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(ModelMap modelMap) throws IOException {
+
+
+        return "index";
+    }
+
+    @RequestMapping(value = "/search/{s}",method = RequestMethod.GET)
+    public String searchList(@PathVariable String s,ModelMap modelMap) throws IOException{
         CloseableHttpClient httpclient = HttpClients.createDefault();
+        String searchUrl = "http://search.maven.org/solrsearch/select?q="+s+"&rows=20&wt=json";
         try {
-            HttpGet httpget = new HttpGet("http://search.maven.org/solrsearch/select?q=commons-lang&rows=20&wt=json");
+            HttpGet httpget = new HttpGet(searchUrl);
 
             System.out.println("Executing request " + httpget.getRequestLine());
             CloseableHttpResponse response = httpclient.execute(httpget);
@@ -48,8 +56,7 @@ public class IndexAction {
         } finally {
             httpclient.close();
         }
-
-        return "index";
+        return "search_list";
     }
 
     @RequestMapping(value = "/cvl/{g}/{a}",method = RequestMethod.GET)
