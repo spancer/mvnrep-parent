@@ -5,3 +5,163 @@
     -webkit-box-shadow:0 3px 6px rgba(0, 0, 0, .175);
     box-shadow:0 3px 6px rgba(0, 0, 0, .175);
 }
+blockquote{padding:10px 20px;margin:0 0 20px;font-size:17.5px;border-left:5px solid #eee}
+/*Blockquote*/
+blockquote {
+    padding: 5px 15px;
+    border-left-width: 2px;
+}
+
+blockquote p {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+blockquote h1,
+blockquote h2,
+blockquote span {
+    font-size: 18px;
+    margin: 0 0 8px;
+    line-height: 24px;
+}
+
+/*Blockquote Styles*/
+blockquote.bq-text-lg p,
+blockquote.bq-text-lg small {
+    text-transform: uppercase;
+}
+
+blockquote.bq-text-lg p {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 32px;
+}
+
+blockquote.text-right,
+blockquote.hero.text-right {
+    border-left: none;
+    border-right: 2px solid #eee;
+}
+
+blockquote.hero.text-right,
+blockquote.hero.text-right:hover {
+    border-color: #555;
+}
+
+blockquote:hover,
+blockquote.text-right:hover {
+    border-color: #72c02c;
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+blockquote.bq-dark,
+blockquote.bq-dark:hover {
+    border-color: #585f69;
+}
+
+blockquote.bq-green {
+    border-color: #72c02c;
+}
+
+/*Blockquote Hero Styles*/
+blockquote.hero {
+    border: none;
+    padding: 18px;
+    font-size: 16px;
+    background: #f3f3f3;
+    border-left: solid 2px #666;
+}
+
+blockquote.hero:hover {
+    background: #eee;
+    border-left-color: #666;
+}
+
+blockquote.hero.hero-dark,
+blockquote.hero.hero-default {
+    border: none;
+}
+
+blockquote.hero.hero-dark {
+    background: #444;
+}
+
+blockquote.hero.hero-dark:hover {
+    background: #555;
+}
+
+blockquote.hero.hero-default {
+    background: #72c02c;
+}
+
+blockquote.hero.hero-default:hover {
+    background: #5fb611;
+}
+
+blockquote.hero.hero-dark p,
+blockquote.hero.hero-dark h2,
+blockquote.hero.hero-dark small,
+blockquote.hero.hero-default p,
+blockquote.hero.hero-default h2,
+blockquote.hero.hero-default small {
+    color: #fff;
+    font-weight: 200;
+}
+/*Common Style*/
+.box-shadow {
+    background: #fff;
+    position: relative;
+}
+
+.box-shadow:after,
+.box-shadow:before {
+    top: 80%;
+    left: 5px;
+    width: 50%;
+    z-index: -1;
+    content: "";
+    bottom: 15px;
+    max-width: 300px;
+    background: #999;
+    position: absolute;
+}
+
+/*Effect 1*/
+.shadow-effect-1 {
+    box-shadow: 0 10px 6px -6px #bbb;
+    -moz-box-shadow: 0 10px 6px -6px #bbb;
+    -webkit-box-shadow: 0 10px 6px -6px #bbb;
+}
+
+/*Effect 2,3,4*/
+.shadow-effect-2 {
+    position: relative;
+}
+
+.shadow-effect-2:after,
+.shadow-effect-2:before,
+.shadow-effect-3:before,
+.shadow-effect-4:after {
+    transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -webkit-transform: rotate(-3deg);
+    box-shadow: 0 15px 10px #999;
+    -moz-box-shadow: 0 15px 10px #999;
+    -webkit-box-shadow: 0 15px 10px #999;
+}
+
+.shadow-effect-2:after,
+.shadow-effect-4:after {
+    left: auto;
+    right: 5px;
+    transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -webkit-transform: rotate(3deg);
+}

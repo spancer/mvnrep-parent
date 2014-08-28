@@ -1,10 +1,43 @@
+;(function($,window,document,undefined){
+    $.fn.scollTop = function(options){
+        var defaults = {
+            scrollDuration:2000,
+            scrollTop:400
+        }
+
+        opt = $.extend({},defaults,options)
+
+        return this.each(function(){
+
+            $(this).click(function(event){
+                $("html, body").animate({scrollTop: 0}, opt.scrollDuration);
+                event.preventDefault();
+            });
+
+            // element must have such attributes
+            //data-position="fixed"
+            //data-bottom="20px"
+            //data-left="20px"
+            $(this).css($(this).data());
+
+            $(this).hide();// hide the link default;
+            var link = $(this);
+
+            $(window).scroll(function(){
+                if ($(window).scrollTop() > opt.scrollTop) {
+                    link.fadeIn();
+                }else{
+                    link.hide();
+                };
+            });
+        })
+    }
+}(jQuery,window,document));
 /*!
  * jQuery Scrollspy Plugin
  * Author: @sxalexander
  * Licensed under the MIT license
  */
-
-
 ;(function ( $, window, document, undefined ) {
     $.fn.extend({
         scrollspy: function ( options ) {
@@ -104,5 +137,31 @@ $.v5mr = {
         "&nbsp;&nbsp;&lt;version&gt;"+gav[2]+"&lt;/version&gt;<br/>"+
         "&lt;/dependency&gt;</code></pre>";
         return mvn;
+    },
+    buildr:function(gav){
+        var builder = "<pre><code>'"+gav[0]+":"+gav[1]+":jar:"+gav[2]+"'</code></pre>";
+        return builder;
+    },
+    ivy:function(gav){
+        var ivy = '<pre><code>&lt;dependency org="'+gav[0]+'" name="'+gav[1]+'" rev="'+gav[2]+'" /&gt;</code></pre>';
+        return ivy;
+    },
+    grape:function(gav){
+        var grape = "<pre><code>@Grapes( <br/>"+
+        "@Grab(group='tw.hyl.common', module='jackson', version='2.3.3')<br/>"+
+        ")</code></pre>";
+        return grape;
+    },
+    gradle:function(gav){
+        var gradle = "compile '"+gav[0]+":"+gav[1]+":"+gav[2]+"'";
+        return gradle;
+    },
+    sbt:function(gav){
+        var sbt = 'libraryDependencies += "'+gav[0]+'" % "'+gav[1]+'" % "'+gav[2]+'"';
+        return sbt;
+    },
+    leiningen:function(gav){
+        var leiningen = '['+gav[0]+'/'+gav[1]+' "'+gav[2]+'"]';
+        return leiningen;
     }
 };

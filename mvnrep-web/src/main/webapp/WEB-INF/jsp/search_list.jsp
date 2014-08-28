@@ -11,12 +11,20 @@
 <div class="line">
     <div class="x2"></div>
     <div class="x7">
+
         <c:forEach var="ga" items="${list}">
-            <div style="padding-bottom: 5px;">
-                <blockquote class="border-sub">
-                    <a href="<c:url value="/cvl/${ga['g']}/${ga['a']}"/>"><strong>${ga['a']}</strong></a>
-                    <p style="padding-left: 10px;color:#666666">等你来完善描述！</p>
-                    <span style="padding-left: 10px;font-size: 12px;color: #bbbbbb">${ga['g']} : ${ga['a']}</span>
+            <%--<div style="padding-bottom: 5px;">--%>
+                <%--<blockquote>--%>
+                    <%--<a href="<c:url value="/cvl/${ga['g']}/${ga['a']}"/>"><strong>${ga['a']}</strong></a>--%>
+                    <%--<p style="padding-left: 10px;color:#666666">等你来完善描述！</p>--%>
+                    <%--<span style="padding-left: 10px;font-size: 12px;color: #bbbbbb">${ga['g']} : ${ga['a']}</span>--%>
+                <%--</blockquote>--%>
+            <%--</div>--%>
+            <div class="shadow-wrapper">
+                <blockquote class="hero box-shadow shadow-effect-2">
+                    <p><a href="<c:url value="/cvl/${ga['g']}/${ga['a']}"/>"><strong>${ga['a']}</strong></a></p>
+                    <p><em>等你来完善描述！</em></p>
+                    <small><em>${ga['g']} : ${ga['a']}</em></small>
                 </blockquote>
             </div>
         </c:forEach>

@@ -754,9 +754,9 @@ dd{padding:8px 0 15px 0;}
 .table-responsive{width:100%;overflow-x:scroll;overflow-y:hidden;-webkit-overflow-scrolling:touch;-ms-overflow-style:-ms-autohiding-scrollbar;}
 .table-responsive .table tr th, .table-responsive .table tr td{white-space:nowrap;}
 }
-blockquote{border:solid 1px #ddd;border-left-width:6px;padding:20px;border-radius:4px;}
-blockquote strong{display:block;font-size:16px;margin-bottom:10px;}
-blockquote p:last-child{margin:0;}
+/*blockquote{border:solid 1px #ddd;border-left-width:6px;padding:20px;border-radius:4px;}*/
+/*blockquote strong{display:block;font-size:16px;margin-bottom:10px;}*/
+/*blockquote p:last-child{margin:0;}*/
 .quote-floatright{border-left-width:1px;border-right-width:6px;text-align:right;}
 .float-left{float:left !important;}
 .float-right{float:right !important;}

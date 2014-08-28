@@ -1,11 +1,7 @@
 package cn.v5cn.mvnrep.action;
 
+import cn.v5cn.mvnrep.utils.HttpUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,32 +26,12 @@ public class IndexAction {
 
     @RequestMapping(value = "/search/{s}",method = RequestMethod.GET)
     public String searchList(@PathVariable String s,ModelMap modelMap) throws IOException{
-        CloseableHttpClient httpclient = HttpClients.createDefault();
         String searchUrl = "http://search.maven.org/solrsearch/select?q="+s+"&rows=20&wt=json";
-        try {
-            HttpGet httpget = new HttpGet(searchUrl);
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String,Map> abc = mapper.readValue(HttpUtils.getResult(searchUrl),Map.class);
 
-            System.out.println("Executing request " + httpget.getRequestLine());
-            CloseableHttpResponse response = httpclient.execute(httpget);
-            try {
-                System.out.println("----------------------------------------");
-                System.out.println(response.getStatusLine());
+        modelMap.addAttribute("list", abc.get("response").get("docs"));
 
-                // Get hold of the response entity
-                HttpEntity entity = response.getEntity();
-                ObjectMapper mapper = new ObjectMapper();
-                Map<String,Map> abc = mapper.readValue(entity.getContent(),Map.class);
-
-                modelMap.addAttribute("list", abc.get("response").get("docs"));
-                // If the response does not enclose an entity, there is no need
-                // to bother about connection release
-
-            } finally {
-                response.close();
-            }
-        } finally {
-            httpclient.close();
-        }
         return "search_list";
     }
 
@@ -66,31 +42,10 @@ public class IndexAction {
         String h = "%22&rows=20&core=gav&wt=json";
         String zh = q+g+z+a+h;
 
-        CloseableHttpClient httpclient = HttpClients.createDefault();
-        try {
-            HttpGet httpget = new HttpGet(zh);
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String,Map> abc = mapper.readValue(HttpUtils.getResult(zh),Map.class);
 
-            System.out.println("Executing request " + httpget.getRequestLine());
-            CloseableHttpResponse response = httpclient.execute(httpget);
-            try {
-                System.out.println("----------------------------------------");
-                System.out.println(response.getStatusLine());
-
-                // Get hold of the response entity
-                HttpEntity entity = response.getEntity();
-                ObjectMapper mapper = new ObjectMapper();
-                Map<String,Map> abc = mapper.readValue(entity.getContent(),Map.class);
-
-                modelMap.addAttribute("list", abc.get("response").get("docs"));
-                // If the response does not enclose an entity, there is no need
-                // to bother about connection release
-
-            } finally {
-                response.close();
-            }
-        } finally {
-            httpclient.close();
-        }
+        modelMap.addAttribute("list", abc.get("response").get("docs"));
 
         return "cvl_list";
     }

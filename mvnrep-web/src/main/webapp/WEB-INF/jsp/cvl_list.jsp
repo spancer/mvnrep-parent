@@ -48,29 +48,31 @@
         <div class="collapse" style="margin: 0 10px;">
             <div class="panel active">
                 <div class="panel-head"><h4>Apache Maven</h4></div>
-                <div class="panel-body" id="maven_panel">
-
-                </div>
+                <div class="panel-body" id="maven_panel" style="padding: 0;"></div>
             </div>
             <div class="panel">
                 <div class="panel-head"><h4>Apache Buildr</h4></div>
-                <div class="panel-body">...</div>
+                <div class="panel-body" id="builder_panel" style="padding: 0;"></div>
             </div>
             <div class="panel">
                 <div class="panel-head"><h4>Apache Ivy</h4></div>
-                <div class="panel-body">...</div>
+                <div class="panel-body" id="ivy_panel" style="padding: 0;"></div>
             </div>
             <div class="panel">
                 <div class="panel-head"><h4>Groovy Grape</h4></div>
-                <div class="panel-body">...</div>
+                <div class="panel-body" id="grape_panel" style="padding: 0;"></div>
             </div>
             <div class="panel">
                 <div class="panel-head"><h4>Gradle/Grails</h4></div>
-                <div class="panel-body">...</div>
+                <div class="panel-body" id="gradle_panel" style="padding: 0;"></div>
             </div>
             <div class="panel">
                 <div class="panel-head"><h4>Scala SBT</h4></div>
-                <div class="panel-body">...</div>
+                <div class="panel-body" id="sbt_panel" style="padding: 0;"></div>
+            </div>
+            <div class="panel">
+                <div class="panel-head"><h4>Leiningen</h4></div>
+                <div class="panel-body" id="leiningen_panel" style="padding: 0;"></div>
             </div>
         </div>
     </div>
@@ -80,10 +82,35 @@
         $(".gavInfo").click(function(){
             var opts = $(this).data("options");
             var gav = opts.split(',');
+
             var mvn = $.v5mr.maven(gav);
-            console.log(mvn);
             $("#maven_panel").empty();
             $("#maven_panel").append(mvn);
+
+            var buildr = $.v5mr.buildr(gav);
+            $("#builder_panel").empty();
+            $("#builder_panel").append(buildr);
+
+            var ivy = $.v5mr.ivy(gav);
+            $("#ivy_panel").empty();
+            $("#ivy_panel").append(ivy);
+
+            var grape = $.v5mr.grape(gav);
+            $("#grape_panel").empty();
+            $("#grape_panel").append(grape);
+
+            var gradle = $.v5mr.gradle(gav);
+            $("#gradle_panel").empty();
+            $("#gradle_panel").append(gradle);
+
+            var sbt = $.v5mr.sbt(gav);
+            $("#sbt_panel").empty();
+            $("#sbt_panel").append(sbt);
+
+            var leiningen = $.v5mr.leiningen(gav);
+            $("#leiningen_panel").empty();
+            $("#leiningen_panel").append(leiningen);
+
             $('pre code').each(function(i, block) {
                 hljs.highlightBlock(block);
             });
