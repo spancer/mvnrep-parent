@@ -1,8 +1,8 @@
 package cn.v5cn.mvnrep.services.impl;
 
-import cn.v5cn.mvnrep.dao.SearchInfoDao;
-import cn.v5cn.mvnrep.entity.SearchInfo;
-import cn.v5cn.mvnrep.services.SearchInfoService;
+import cn.v5cn.mvnrep.dao.JarTypeInfoDao;
+import cn.v5cn.mvnrep.entity.JarTypeInfo;
+import cn.v5cn.mvnrep.services.JarTypeInfoService;
 import com.google.common.collect.Lists;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,25 +15,25 @@ import java.util.Map;
  * Created by ZYW on 2014/8/29.
  */
 @Service("searchInfoService")
-public class SearchInfoServiceImpl implements SearchInfoService {
+public class JarTypeInfoServiceImpl implements JarTypeInfoService {
 
     @Autowired
-    private SearchInfoDao searchInfoDao;
+    private JarTypeInfoDao jarTypeInfoDao;
 
     @Override
-    public List<SearchInfo> addSearchJarInfo(List<Map<String,Object>> httpResults) {
-        List<SearchInfo> result = Lists.newArrayList();
-        SearchInfo dbObj = null;
+    public List<JarTypeInfo> addSearchJarInfo(List<Map<String,Object>> httpResults) {
+        List<JarTypeInfo> result = Lists.newArrayList();
+        JarTypeInfo dbObj = null;
         for(Map<String,Object> httpResult : httpResults){
-            dbObj = new SearchInfo();
+            dbObj = new JarTypeInfo();
             dbObj.setId(httpResult.get("id").toString());
             dbObj.setLatestVersion(httpResult.get("latestVersion").toString());
             dbObj.setVersionCount(Integer.valueOf(httpResult.get("versionCount").toString()));
-            SearchInfo si = searchInfoDao.findByIdAndLastVersion(dbObj.getId());
+            JarTypeInfo si = jarTypeInfoDao.findByIdAndLastVersion(dbObj.getId());
             if(si != null && si.getLatestVersion().equals(dbObj.getLatestVersion())){
                 continue;
             }else if(si != null){
-                searchInfoDao.updateLastVersionAndVersionCount(dbObj.getLatestVersion(),dbObj.getVersionCount(),si.getSid());
+                jarTypeInfoDao.updateLastVersionAndVersionCount(dbObj.getLatestVersion(),dbObj.getVersionCount(),si.getJtiId());
             }
             dbObj.setGroupId(httpResult.get("g").toString());
             dbObj.setArtifactId(httpResult.get("a").toString());
@@ -42,7 +42,8 @@ public class SearchInfoServiceImpl implements SearchInfoService {
             dbObj.setPack(httpResult.get("p").toString());
             dbObj.setUpdatetime(new DateTime(Long.valueOf(httpResult.get("timestamp").toString())).toString("YYYY-MM-dd"));
 
-            searchInfoDao.addSearchJarInfo(dbObj);
+            jarTypeInfoDao.addSearchJarInfo(dbObj);
+
             result.add(dbObj);
         }
 

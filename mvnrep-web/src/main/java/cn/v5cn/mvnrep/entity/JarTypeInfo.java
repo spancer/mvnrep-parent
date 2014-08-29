@@ -5,8 +5,8 @@ import java.io.Serializable;
 /**
  * Created by ZYW on 2014/8/29.
  */
-public class SearchInfo implements Serializable {
-    private Long sid;
+public class JarTypeInfo implements Serializable {
+    private Long jtiId;
     private String id;
     private String groupId;
     private String artifactId;
@@ -16,12 +16,12 @@ public class SearchInfo implements Serializable {
     private String updatetime;
     private int versionCount;
 
-    public Long getSid() {
-        return sid;
+    public Long getJtiId() {
+        return jtiId;
     }
 
-    public void setSid(Long sid) {
-        this.sid = sid;
+    public void setJtiId(Long jtiId) {
+        this.jtiId = jtiId;
     }
 
     public String getId() {
@@ -91,7 +91,7 @@ public class SearchInfo implements Serializable {
     @Override
     public String toString() {
         return "SearchInfo{" +
-                "sid=" + sid +
+                "jtiId=" + jtiId +
                 ", id='" + id + '\'' +
                 ", groupId='" + groupId + '\'' +
                 ", artifactId='" + artifactId + '\'' +

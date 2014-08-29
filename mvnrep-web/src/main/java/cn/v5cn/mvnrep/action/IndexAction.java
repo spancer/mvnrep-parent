@@ -1,8 +1,8 @@
 package cn.v5cn.mvnrep.action;
 
-import cn.v5cn.mvnrep.entity.SearchInfo;
+import cn.v5cn.mvnrep.entity.JarTypeInfo;
 import cn.v5cn.mvnrep.services.JarTypeClickRatioService;
-import cn.v5cn.mvnrep.services.SearchInfoService;
+import cn.v5cn.mvnrep.services.JarTypeInfoService;
 import cn.v5cn.mvnrep.services.SearchKeyService;
 import cn.v5cn.mvnrep.utils.HttpUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,7 +26,7 @@ public class IndexAction {
     @Autowired
     private SearchKeyService searchKeyService;
     @Autowired
-    private SearchInfoService searchInfoService;
+    private JarTypeInfoService jarTypeInfoService;
 
     @Autowired
     private JarTypeClickRatioService jarTypeClickRatioService;
@@ -44,7 +44,7 @@ public class IndexAction {
         String searchUrl = "http://search.maven.org/solrsearch/select?q="+s+"&rows=20&wt=json";
         ObjectMapper mapper = new ObjectMapper();
         Map<String,Map> result = mapper.readValue(HttpUtils.getResult(searchUrl),Map.class);
-        List<SearchInfo> searchInfos = searchInfoService.addSearchJarInfo(((List)(result.get("response").get("docs"))));
+        List<JarTypeInfo> searchInfos = jarTypeInfoService.addSearchJarInfo(((List)(result.get("response").get("docs"))));
         modelMap.addAttribute("list", result.get("response").get("docs"));
 
         return "search_list";

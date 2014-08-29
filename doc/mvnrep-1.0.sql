@@ -2,8 +2,9 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`mvnrep` /*!40100 DEFAULT CHARACTER SET 
 
 USE `mvnrep`;
 
-create table searchInfo(
-  sid bigint not null AUTO_INCREMENT,
+/*每个类型的jar文件信息*/
+create table jarTypeInfo(
+  jtiId bigint not null AUTO_INCREMENT,
   id varchar(100) not null,
   groupId varchar(100) not null,
   artifactId varchar(100) not null,
@@ -12,7 +13,7 @@ create table searchInfo(
   pack varchar(50),
   updatetime varchar(50),
   versionCount int,
-  primary key (sid)
+  primary key (jtiId)
 )ENGINE=MyISAM AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 
 create table jarInfo(
@@ -42,7 +43,9 @@ create table typejardes(
   des text,
   createDT varchar(100),
   author varchar(100),
+  jtiId Long not null,    /*Jar类型ID*/
   audit int default -1  comment '审核状态，-1未通过，0暂无，1通过',
+
   primary key (tjdId)
 )ENGINE=MyISAM AUTO_INCREMENT=1000 DEFAULT CHARSET=utf8;
 /*搜索关键字*/
