@@ -1,0 +1,105 @@
+package cn.v5cn.mvnrep.entity;
+
+import java.io.Serializable;
+
+/**
+ * Created by ZYW on 2014/8/29.
+ */
+public class SearchInfo implements Serializable {
+    private Long sid;
+    private String id;
+    private String groupId;
+    private String artifactId;
+    private String latestVersion;
+    private String repositoryId;
+    private String pack;
+    private String updatetime;
+    private int versionCount;
+
+    public Long getSid() {
+        return sid;
+    }
+
+    public void setSid(Long sid) {
+        this.sid = sid;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getArtifactId() {
+        return artifactId;
+    }
+
+    public void setArtifactId(String artifactId) {
+        this.artifactId = artifactId;
+    }
+
+    public String getLatestVersion() {
+        return latestVersion;
+    }
+
+    public void setLatestVersion(String latestVersion) {
+        this.latestVersion = latestVersion;
+    }
+
+    public String getRepositoryId() {
+        return repositoryId;
+    }
+
+    public void setRepositoryId(String repositoryId) {
+        this.repositoryId = repositoryId;
+    }
+
+    public String getPack() {
+        return pack;
+    }
+
+    public void setPack(String pack) {
+        this.pack = pack;
+    }
+
+    public String getUpdatetime() {
+        return updatetime;
+    }
+
+    public void setUpdatetime(String updatetime) {
+        this.updatetime = updatetime;
+    }
+
+    public int getVersionCount() {
+        return versionCount;
+    }
+
+    public void setVersionCount(int versionCount) {
+        this.versionCount = versionCount;
+    }
+
+    @Override
+    public String toString() {
+        return "SearchInfo{" +
+                "sid=" + sid +
+                ", id='" + id + '\'' +
+                ", groupId='" + groupId + '\'' +
+                ", artifactId='" + artifactId + '\'' +
+                ", latestVersion='" + latestVersion + '\'' +
+                ", repositoryId='" + repositoryId + '\'' +
+                ", pack='" + pack + '\'' +
+                ", updatetime='" + updatetime + '\'' +
+                ", versionCount=" + versionCount +
+                '}';
+    }
+}

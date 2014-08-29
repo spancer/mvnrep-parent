@@ -1,7 +1,12 @@
 package cn.v5cn.mvnrep.action;
 
+import cn.v5cn.mvnrep.entity.SearchInfo;
+import cn.v5cn.mvnrep.services.JarTypeClickRatioService;
+import cn.v5cn.mvnrep.services.SearchInfoService;
+import cn.v5cn.mvnrep.services.SearchKeyService;
 import cn.v5cn.mvnrep.utils.HttpUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -16,6 +22,14 @@ import java.util.Map;
  */
 @Controller
 public class IndexAction {
+
+    @Autowired
+    private SearchKeyService searchKeyService;
+    @Autowired
+    private SearchInfoService searchInfoService;
+
+    @Autowired
+    private JarTypeClickRatioService jarTypeClickRatioService;
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(ModelMap modelMap) throws IOException {
@@ -26,11 +40,12 @@ public class IndexAction {
 
     @RequestMapping(value = "/search/{s}",method = RequestMethod.GET)
     public String searchList(@PathVariable String s,ModelMap modelMap) throws IOException{
+        searchKeyService.addOrUpdateSearchKey(s);
         String searchUrl = "http://search.maven.org/solrsearch/select?q="+s+"&rows=20&wt=json";
         ObjectMapper mapper = new ObjectMapper();
-        Map<String,Map> abc = mapper.readValue(HttpUtils.getResult(searchUrl),Map.class);
-
-        modelMap.addAttribute("list", abc.get("response").get("docs"));
+        Map<String,Map> result = mapper.readValue(HttpUtils.getResult(searchUrl),Map.class);
+        List<SearchInfo> searchInfos = searchInfoService.addSearchJarInfo(((List)(result.get("response").get("docs"))));
+        modelMap.addAttribute("list", result.get("response").get("docs"));
 
         return "search_list";
     }
@@ -42,10 +57,12 @@ public class IndexAction {
         String h = "%22&rows=20&core=gav&wt=json";
         String zh = q+g+z+a+h;
 
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String,Map> abc = mapper.readValue(HttpUtils.getResult(zh),Map.class);
+        jarTypeClickRatioService.addOrUpdateClickRatio(g,a);
 
-        modelMap.addAttribute("list", abc.get("response").get("docs"));
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String,Map> httpRsult = mapper.readValue(HttpUtils.getResult(zh),Map.class);
+
+        modelMap.addAttribute("list", httpRsult.get("response").get("docs"));
 
         return "cvl_list";
     }

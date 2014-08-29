@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.v5cn.mvnrep.dao.SearchInfoDao">
+    <insert id="addSearchJarInfo" parameterType="SearchInfo">
+        insert into searchInfo(id,groupId,artifactId,latestVersion,repositoryId,pack,updatetime,versionCount) values(#{id},#{groupId},#{artifactId},#{latestVersion},#{repositoryId},#{pack},#{updatetime},#{versionCount})
+    </insert>
+    <select id="findByIdAndLastVersion" resultType="SearchInfo">
+        select sid,latestVersion from searchInfo where id=#{id}
+    </select>
+    <update id="updateLastVersionAndVersionCount">
+        update searchInfo set latestVersion=#{latestVersion},versionCount=#{versionCount} where sid=#{sid}
+    </update>
+</mapper>

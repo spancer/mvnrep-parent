@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.v5cn.mvnrep.dao.JarTypeClickRatioDao">
+    <insert id="addJTCR" parameterType="JarTypeClickRatio">
+        insert into jarTypeClickRatio(jarga,clickRatio) values(#{jarga},#{clickRatio})
+    </insert>
+    <select id="findByGaJTCR" resultType="JarTypeClickRatio">
+        select * from jarTypeClickRatio where jarga=#{jarga}
+    </select>
+    <update id="updateJTCR">
+        update jarTypeClickRatio set clickRatio=#{clickRatio} where jtcrId=#{jtcrId}
+    </update>
+</mapper>
