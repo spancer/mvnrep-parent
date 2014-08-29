@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.v5cn.mvnrep.dao.JarTypeInfoDao">
+    <insert id="addSearchJarInfo" parameterType="JarTypeInfo">
+        insert into jarTypeInfo(id,groupId,artifactId,latestVersion,repositoryId,pack,updatetime,versionCount) values(#{id},#{groupId},#{artifactId},#{latestVersion},#{repositoryId},#{pack},#{updatetime},#{versionCount})
+    </insert>
+    <select id="findByIdAndLastVersion" resultType="JarTypeInfo">
+        select jtiId,latestVersion from jarTypeInfo where id=#{id}
+    </select>
+    <update id="updateLastVersionAndVersionCount">
+        update jarTypeInfo set latestVersion=#{latestVersion},versionCount=#{versionCount} where jtiId=#{jtiId}
+    </update>
+</mapper>
