@@ -19,9 +19,10 @@
     </div>
     <div class="x7">
         <div class="panel" style="margin: 0 10px 10px 10px;">
-            <div class="panel-head">没想好</div>
+            <div class="panel-head">GroupId ArtifactId</div>
             <div class="panel-body">
-
+                <a href="#"><span class="tag bg-green">${list[0]['g']}</span></a>&nbsp;&nbsp;
+                <a href="#"><span class="tag bg-main">${list[0]['a']}</span></a>
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="tpls/header.jsp"/>
-<div class="line">
+<div class="line" style="margin-top: 135px;">
     <div class="x2">
         <div class="panel" style="margin: 0 10px 10px 10px;">
             <div class="panel-head">没想好</div>
@@ -27,8 +27,8 @@
         <div class="panel" style="margin-bottom: 10px;">
             <div class="panel-head">GroupId ArtifactId</div>
             <div class="panel-body">
-                <a href="#"><span class="tag bg-green">${list[0]['g']}</span></a>&nbsp;&nbsp;
-                <a href="#"><span class="tag bg-main">${list[0]['a']}</span></a>
+                <a href="#"><span class="tag bg-green">${list[0].groupId}</span></a>&nbsp;&nbsp;
+                <a href="#"><span class="tag bg-main">${list[0].artifactId}</span></a>
             </div>
         </div>
         <div class="panel" style="margin-bottom: 10px;">
@@ -48,10 +48,14 @@
                 </tr>
                 <c:forEach var="ga" items="${list}">
                 <tr>
-                    <td><a class="gavInfo" href="javascript:;" data-options="${ga['g']},${ga['a']},${ga['v']}"><span class="badge bg-main">${ga['v']}</span></a></td>
-                    <td>类型</td>
-                    <td>${ga['timestamp']}</td>
-                    <td>点击率</td>
+                    <td>
+                        <a class="gavInfo" href="javascript:;"
+                           data-options="${ga.groupId},${ga.artifactId},${ga.version}">
+                        <span class="badge ${ga.jarcolor}">${ga.version}</span>
+                    </a></td>
+                    <td>${ga.jartype}</td>
+                    <td>${ga.builderTime}</td>
+                    <td>${ga.clickRatio}</td>
                 </tr>
                 </c:forEach>
             </table>

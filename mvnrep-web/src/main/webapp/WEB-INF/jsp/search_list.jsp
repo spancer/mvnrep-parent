@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="tpls/header.jsp"/>
-<div class="line">
+<div class="line" style="margin-top: 135px;">
     <div class="x2">
         <div class="panel" style="margin: 0 10px 10px 10px;">
             <div class="panel-head">没想好</div>

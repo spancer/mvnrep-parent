@@ -1,6 +1,8 @@
 package cn.v5cn.mvnrep.action;
 
+import cn.v5cn.mvnrep.entity.JarInfo;
 import cn.v5cn.mvnrep.entity.JarTypeInfo;
+import cn.v5cn.mvnrep.services.JarInfoService;
 import cn.v5cn.mvnrep.services.JarTypeClickRatioService;
 import cn.v5cn.mvnrep.services.JarTypeInfoService;
 import cn.v5cn.mvnrep.services.SearchKeyService;
@@ -30,6 +32,9 @@ public class IndexAction {
 
     @Autowired
     private JarTypeClickRatioService jarTypeClickRatioService;
+
+    @Autowired
+    private JarInfoService jarInfoService;
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(ModelMap modelMap) throws IOException {
@@ -61,8 +66,8 @@ public class IndexAction {
 
         ObjectMapper mapper = new ObjectMapper();
         Map<String,Map> httpRsult = mapper.readValue(HttpUtils.getResult(zh),Map.class);
-
-        modelMap.addAttribute("list", httpRsult.get("response").get("docs"));
+        List<JarInfo> jarInfos = jarInfoService.addJarInfo((List<Map<String, Object>>) httpRsult.get("response").get("docs"));
+        modelMap.addAttribute("list", jarInfos);
 
         return "cvl_list";
     }

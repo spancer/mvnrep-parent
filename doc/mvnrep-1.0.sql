@@ -22,6 +22,7 @@ create table jarInfo(
   artifactId varchar(200) not null,
   version varchar(100) not null,
   jartype varchar(100) not null comment'当前的jar版本，是release,release candidate,beta,alpha,milestone',
+  jarcolor varchar(50), /*根据不同的版本显示不同的样式*/
   builderTime varchar(200) not null,
   clickRatio bigint not null default 0,
   remark text,

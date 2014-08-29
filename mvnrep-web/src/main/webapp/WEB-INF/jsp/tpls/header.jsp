@@ -22,7 +22,7 @@
     <script type="text/javascript" src="<c:url value="/r/js/pintuer.js"/>"></script>
 </head>
 <body>
-    <div class="layout doc-header fixed" id="serachHeader">
+    <div class="layout doc-header fixed fixed-top">
         <div class="x4"></div>
         <div class="x4" style="height: 120px;">
             <div class="form-group">
@@ -40,11 +40,12 @@
     $(function(){
         $("#searchGAV").click(function(){
             var sv = $("#searchVal").val();
-            location.href="<c:url value="/search/"/>"+sv;
+            var url = "<c:url value="/search"/>"+"/"+sv;
+            location.href = url;
         });
         $("#serachHeader").scrollspy({
             min: 20,
-            max:($(document).height()+200),
+            max:($(document).height()),
             onEnter: function(element, position) {
                 $("#serachHeader").addClass('fixed-top');
             },

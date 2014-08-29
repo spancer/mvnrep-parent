@@ -6,13 +6,14 @@ import java.io.Serializable;
  * Created by ZYW on 2014/8/29.
  */
 public class JarInfo implements Serializable {
-    private Long jarInfoId;
+    private Long  jarInfoId;
     private String groupId;
     private String artifactId;
     private String version;
     private String jartype; //当前的jar版本，是release,release candidate,beta,alpha,milestone',
+    private String jarcolor;    //根据不同版本显示不同颜色
     private String builderTime;
-    private String clickRatio;
+    private Long clickRatio;
     private String remark;
 
     public Long getJarInfoId() {
@@ -55,6 +56,14 @@ public class JarInfo implements Serializable {
         this.jartype = jartype;
     }
 
+    public String getJarcolor() {
+        return jarcolor;
+    }
+
+    public void setJarcolor(String jarcolor) {
+        this.jarcolor = jarcolor;
+    }
+
     public String getBuilderTime() {
         return builderTime;
     }
@@ -63,11 +72,11 @@ public class JarInfo implements Serializable {
         this.builderTime = builderTime;
     }
 
-    public String getClickRatio() {
+    public Long getClickRatio() {
         return clickRatio;
     }
 
-    public void setClickRatio(String clickRatio) {
+    public void setClickRatio(Long clickRatio) {
         this.clickRatio = clickRatio;
     }
 
@@ -87,6 +96,7 @@ public class JarInfo implements Serializable {
                 ", artifactId='" + artifactId + '\'' +
                 ", version='" + version + '\'' +
                 ", jartype='" + jartype + '\'' +
+                ", jarcolor='" + jarcolor + '\'' +
                 ", builderTime='" + builderTime + '\'' +
                 ", clickRatio='" + clickRatio + '\'' +
                 ", remark='" + remark + '\'' +

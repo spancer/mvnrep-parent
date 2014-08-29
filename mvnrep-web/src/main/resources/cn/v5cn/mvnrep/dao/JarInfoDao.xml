@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.v5cn.mvnrep.dao.JarInfoDao">
+    <insert id="addJarInfo" parameterType="JarInfo">
+        insert into JarInfo(groupId,artifactId,version,jartype,jarcolor,builderTime) values(#{groupId},#{artifactId},#{version},#{jartype},#{jarcolor},#{builderTime})
+    </insert>
+    <select id="findByGAR" resultType="JarInfo">
+        select * from JarInfo where groupId=#{g} and artifactId=#{a} and version=#{v}
+    </select>
+    <update id="updateClickRatio">
+        update JarInfo set clickRatio=#{clickRatio} where jarInfoId=#{jarInfoId}
+    </update>
+</mapper>
