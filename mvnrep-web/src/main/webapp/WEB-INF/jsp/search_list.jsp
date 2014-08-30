@@ -37,10 +37,10 @@
                     <%--</div>--%>
                     <div class="shadow-wrapper">
                         <blockquote class="hero box-shadow shadow-effect-2">
-                            <p><a href="<c:url value="/cvl/${ga['g']}/${ga['a']}"/>"><strong>${ga['a']}</strong></a></p>
+                            <p><a href="<c:url value="/cvl/${ga.groupId}/${ga.artifactId}"/>"><strong>${ga.artifactId}</strong></a></p>
                             <p><em>等你来完善描述！</em></p>
-                            <small><em>${ga['g']} : ${ga['a']}</em></small>
-                            <p class="float-right">最新版本：${ga['latestVersion']}</p>
+                            <small><em>${ga.groupId} : ${ga.artifactId}"</em></small>
+                            <p class="float-right">最新版本：${ga.latestVersion}</p>
                         </blockquote>
                     </div>
                 </c:forEach>

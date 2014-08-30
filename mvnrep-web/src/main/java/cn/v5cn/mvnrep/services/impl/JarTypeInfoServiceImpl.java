@@ -5,6 +5,8 @@ import cn.v5cn.mvnrep.entity.JarTypeInfo;
 import cn.v5cn.mvnrep.services.JarTypeInfoService;
 import com.google.common.collect.Lists;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ import java.util.Map;
  */
 @Service("searchInfoService")
 public class JarTypeInfoServiceImpl implements JarTypeInfoService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(JarTypeInfoServiceImpl.class);
 
     @Autowired
     private JarTypeInfoDao jarTypeInfoDao;
@@ -29,22 +33,27 @@ public class JarTypeInfoServiceImpl implements JarTypeInfoService {
             dbObj.setId(httpResult.get("id").toString());
             dbObj.setLatestVersion(httpResult.get("latestVersion").toString());
             dbObj.setVersionCount(Integer.valueOf(httpResult.get("versionCount").toString()));
-            JarTypeInfo si = jarTypeInfoDao.findByIdAndLastVersion(dbObj.getId());
-            if(si != null && si.getLatestVersion().equals(dbObj.getLatestVersion())){
-                continue;
-            }else if(si != null){
-                jarTypeInfoDao.updateLastVersionAndVersionCount(dbObj.getLatestVersion(),dbObj.getVersionCount(),si.getJtiId());
-            }
             dbObj.setGroupId(httpResult.get("g").toString());
             dbObj.setArtifactId(httpResult.get("a").toString());
-
             dbObj.setRepositoryId(httpResult.get("repositoryId").toString());
             dbObj.setPack(httpResult.get("p").toString());
             dbObj.setUpdatetime(new DateTime(Long.valueOf(httpResult.get("timestamp").toString())).toString("YYYY-MM-dd"));
 
+
+            JarTypeInfo si = jarTypeInfoDao.findByIdAndLastVersion(dbObj.getId());
+            if(si != null && si.getLatestVersion().equals(dbObj.getLatestVersion())){
+                result.add(si);
+                continue;
+            }else if(si != null && !si.getLatestVersion().equals(dbObj.getLatestVersion())){
+                jarTypeInfoDao.updateLastVersionAndVersionCount(dbObj.getLatestVersion(),dbObj.getVersionCount(),si.getJtiId());
+                result.add(si);
+                LOGGER.info("db-jarType-update:{}",si);
+                continue;
+            }
+            LOGGER.info("db-jarType-non:{}",dbObj);
+            result.add(dbObj);
             jarTypeInfoDao.addSearchJarInfo(dbObj);
 
-            result.add(dbObj);
         }
 
         return result;

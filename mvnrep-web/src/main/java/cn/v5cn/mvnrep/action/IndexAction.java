@@ -50,7 +50,7 @@ public class IndexAction {
         ObjectMapper mapper = new ObjectMapper();
         Map<String,Map> result = mapper.readValue(HttpUtils.getResult(searchUrl),Map.class);
         List<JarTypeInfo> searchInfos = jarTypeInfoService.addSearchJarInfo(((List)(result.get("response").get("docs"))));
-        modelMap.addAttribute("list", result.get("response").get("docs"));
+        modelMap.addAttribute("list", searchInfos);
 
         return "search_list";
     }

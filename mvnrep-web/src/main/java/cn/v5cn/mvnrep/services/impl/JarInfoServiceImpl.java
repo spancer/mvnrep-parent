@@ -6,6 +6,8 @@ import cn.v5cn.mvnrep.services.JarInfoService;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,8 @@ import java.util.Map;
  */
 @Service("jarInfoService")
 public class JarInfoServiceImpl implements JarInfoService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(JarInfoServiceImpl.class);
 
     @Autowired
     private JarInfoDao jarInfoDao;
@@ -40,6 +44,7 @@ public class JarInfoServiceImpl implements JarInfoService {
                 result.add(sji);
                 continue;
             }
+            LOGGER.info("db-jar-add:{}",dbObj);
             result.add(dbObj);
             jarInfoDao.addJarInfo(dbObj);
 
