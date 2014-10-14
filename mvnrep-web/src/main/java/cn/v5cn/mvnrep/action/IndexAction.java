@@ -36,7 +36,7 @@ public class IndexAction {
     @Autowired
     private JarInfoService jarInfoService;
 
-    @RequestMapping(value = "/index",method = RequestMethod.GET)
+    @RequestMapping(value = {"/","/index"},method = RequestMethod.GET)
     public String index(ModelMap modelMap) throws IOException {
 
 
@@ -49,6 +49,7 @@ public class IndexAction {
         String searchUrl = "http://search.maven.org/solrsearch/select?q="+s+"&rows=20&wt=json";
         ObjectMapper mapper = new ObjectMapper();
         Map<String,Map> result = mapper.readValue(HttpUtils.getResult(searchUrl),Map.class);
+        HttpUtils.closeHttpResponse();
         List<JarTypeInfo> searchInfos = jarTypeInfoService.addSearchJarInfo(((List)(result.get("response").get("docs"))));
         modelMap.addAttribute("list", searchInfos);
 
@@ -66,6 +67,7 @@ public class IndexAction {
 
         ObjectMapper mapper = new ObjectMapper();
         Map<String,Map> httpRsult = mapper.readValue(HttpUtils.getResult(zh),Map.class);
+        HttpUtils.closeHttpResponse();
         List<JarInfo> jarInfos = jarInfoService.addJarInfo((List<Map<String, Object>>) httpRsult.get("response").get("docs"));
         modelMap.addAttribute("list", jarInfos);
 

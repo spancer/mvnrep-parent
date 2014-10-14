@@ -44,6 +44,7 @@ public class JarInfoServiceImpl implements JarInfoService {
                 result.add(sji);
                 continue;
             }
+            System.out.println(dbObj);
             LOGGER.info("db-jar-add:{}",dbObj);
             result.add(dbObj);
             jarInfoDao.addJarInfo(dbObj);
@@ -66,10 +67,14 @@ public class JarInfoServiceImpl implements JarInfoService {
         if(StringUtils.contains(version.toLowerCase(),"-a")){
             return new String[]{"alpha","bg-red"};
         }
-        if(StringUtils.contains(version.toLowerCase(),"-b")){
+        if(StringUtils.contains(version.toLowerCase(),"-b")
+                || StringUtils.contains(version.toLowerCase(),"beta")){
+            System.out.println(version.toLowerCase()+"================");
             return new String[]{"beta","bg-yellow"};
         }
-        if(StringUtils.contains(version.toLowerCase(),"-rc") || StringUtils.contains(version.toLowerCase(),"cr")){
+        if(StringUtils.contains(version.toLowerCase(),"-rc")
+                || StringUtils.contains(version.toLowerCase(),"cr")
+                || StringUtils.contains(version.toLowerCase(),"rc")){
             return new String[]{"release candidate","bg-blue"};
         }
         if(StringUtils.contains(version.toLowerCase(),"-m")){
