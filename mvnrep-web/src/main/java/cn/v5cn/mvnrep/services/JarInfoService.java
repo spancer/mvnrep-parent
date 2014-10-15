@@ -10,4 +10,6 @@ import java.util.Map;
  */
 public interface JarInfoService {
     List<JarInfo> addJarInfo(List<Map<String,Object>> httpData);
+    JarInfo findByGAR(String g,String a,String v);
+    Long updateClickRatio(Long jarInfoId,Long clickRatio);
 }

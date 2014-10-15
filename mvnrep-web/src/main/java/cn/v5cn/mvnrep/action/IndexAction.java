@@ -8,6 +8,7 @@ import cn.v5cn.mvnrep.services.JarTypeInfoService;
 import cn.v5cn.mvnrep.services.SearchKeyService;
 import cn.v5cn.mvnrep.utils.HttpUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.ImmutableMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -39,6 +40,7 @@ public class IndexAction {
     @RequestMapping(value = {"/","/index"},method = RequestMethod.GET)
     public String index(ModelMap modelMap) throws IOException {
 
+        modelMap.addAttribute("searchText","");
 
         return "index";
     }
@@ -52,7 +54,7 @@ public class IndexAction {
         HttpUtils.closeHttpResponse();
         List<JarTypeInfo> searchInfos = jarTypeInfoService.addSearchJarInfo(((List)(result.get("response").get("docs"))));
         modelMap.addAttribute("list", searchInfos);
-
+        modelMap.addAttribute("searchText",s);
         return "search_list";
     }
 
@@ -70,7 +72,14 @@ public class IndexAction {
         HttpUtils.closeHttpResponse();
         List<JarInfo> jarInfos = jarInfoService.addJarInfo((List<Map<String, Object>>) httpRsult.get("response").get("docs"));
         modelMap.addAttribute("list", jarInfos);
-
+        modelMap.addAttribute("searchText",a);
         return "cvl_list";
+    }
+
+    @RequestMapping(value = "/jcre/edit",method = RequestMethod.POST)
+    public ImmutableMap<String,String> jarClickRatioEdit(String g,String a,String v){
+        JarInfo jarInfo = jarInfoService.findByGAR(g,a,v);
+        Long result = jarInfoService.updateClickRatio(jarInfo.getJarInfoId(),jarInfo.getClickRatio()+1L);
+        return ImmutableMap.of("status","1","message","成功！");
     }
 }

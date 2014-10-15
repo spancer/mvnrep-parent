@@ -16,6 +16,8 @@ public class JarInfo implements Serializable {
     private Long clickRatio;
     private String remark;
 
+    private double progress = 1;
+
     public Long getJarInfoId() {
         return jarInfoId;
     }
@@ -86,6 +88,15 @@ public class JarInfo implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public double getProgress() {
+        if(this.getClickRatio() == 0L){
+            return 0.25;
+        }
+        progress = Math.ceil(this.getClickRatio()/10);
+        progress = progress == 0.0 ? 0.7 : progress;
+        return progress;
     }
 
     @Override

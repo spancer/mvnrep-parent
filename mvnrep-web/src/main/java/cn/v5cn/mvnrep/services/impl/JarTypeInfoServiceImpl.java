@@ -1,7 +1,9 @@
 package cn.v5cn.mvnrep.services.impl;
 
 import cn.v5cn.mvnrep.dao.JarTypeInfoDao;
+import cn.v5cn.mvnrep.entity.JarTypeClickRatio;
 import cn.v5cn.mvnrep.entity.JarTypeInfo;
+import cn.v5cn.mvnrep.services.JarTypeClickRatioService;
 import cn.v5cn.mvnrep.services.JarTypeInfoService;
 import com.google.common.collect.Lists;
 import org.joda.time.DateTime;
@@ -10,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +27,9 @@ public class JarTypeInfoServiceImpl implements JarTypeInfoService {
 
     @Autowired
     private JarTypeInfoDao jarTypeInfoDao;
+
+    @Autowired
+    private JarTypeClickRatioService jarTypeClickRatioService;
 
     @Override
     public List<JarTypeInfo> addSearchJarInfo(List<Map<String,Object>> httpResults) {
@@ -41,6 +48,14 @@ public class JarTypeInfoServiceImpl implements JarTypeInfoService {
 
 
             JarTypeInfo si = jarTypeInfoDao.findByIdAndLastVersion(dbObj.getId());
+            if(si != null){
+                JarTypeClickRatio byGaJTCR = jarTypeClickRatioService.findByGaJTCR(si.getId());
+                if(byGaJTCR != null){
+                    si.setClickRatio(byGaJTCR.getClickRatio());
+                }else{
+                    si.setClickRatio(0L);
+                }
+            }
             if(si != null && si.getLatestVersion().equals(dbObj.getLatestVersion())){
                 result.add(si);
                 continue;
@@ -50,12 +65,18 @@ public class JarTypeInfoServiceImpl implements JarTypeInfoService {
                 LOGGER.info("db-jarType-update:{}",si);
                 continue;
             }
+            dbObj.setClickRatio(0L);
             LOGGER.info("db-jarType-non:{}",dbObj);
             result.add(dbObj);
             jarTypeInfoDao.addSearchJarInfo(dbObj);
 
         }
-
+        Collections.sort(result,new Comparator<JarTypeInfo>() {
+            @Override
+            public int compare(JarTypeInfo o1, JarTypeInfo o2) {
+                return Integer.valueOf(((o2.getClickRatio().longValue())-(o1.getClickRatio().longValue()))+"");
+            }
+        });
         return result;
     }
 }

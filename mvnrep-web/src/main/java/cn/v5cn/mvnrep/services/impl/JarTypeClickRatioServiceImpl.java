@@ -27,4 +27,9 @@ public class JarTypeClickRatioServiceImpl implements JarTypeClickRatioService {
             return jarTypeClickRatioDao.addJTCR(dbObj);
         }
     }
+
+    @Override
+    public JarTypeClickRatio findByGaJTCR(String jarga) {
+        return jarTypeClickRatioDao.findByGaJTCR(jarga);
+    }
 }

@@ -41,8 +41,8 @@
                             <p><a href="<c:url value="/cvl/${ga.groupId}/${ga.artifactId}"/>"><strong>${ga.groupId} : ${ga.artifactId}</strong></a></p>
 
                             <p><em>等你来完善描述！</em></p>
-                            <%--<small><em>${ga.artifactId}</em></small>--%>
 
+                            <small><em>点击数</em></small> : <span class="badge bg-green">${ga.clickRatio}</span>
                         </blockquote>
                     </div>
                 </c:forEach>

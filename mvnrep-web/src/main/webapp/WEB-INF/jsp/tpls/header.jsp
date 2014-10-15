@@ -28,7 +28,7 @@
             <div class="form-group">
                 <div class="field">
                     <div class="input-group" style="margin-top: 35px;">
-                        <input type="text" id="searchVal" class="input input-big" name="s" size="50" placeholder="关键字" />
+                        <input type="text" id="searchVal" class="input input-big" value="${searchText}" name="s" size="50" placeholder="关键字" />
                         <span class="addbtn"><button type="button" id="searchGAV" class="button input-big">搜!</button></span>
                     </div>
                 </div>

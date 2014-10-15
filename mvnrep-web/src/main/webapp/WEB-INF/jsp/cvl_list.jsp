@@ -55,7 +55,13 @@
                     </a></td>
                     <td>${ga.jartype}</td>
                     <td>${ga.builderTime}</td>
-                    <td>${ga.clickRatio}</td>
+                    <td>
+                        <small class="float-right"><em>${ga.clickRatio}</em></small>
+                        <small><em>点击数</em></small>
+                        <div class="progress progress-small">
+                            <div class="progress-bar bg-yellow" style="width:${ga.progress}%;"></div>
+                        </div>
+                    </td>
                 </tr>
                 </c:forEach>
             </table>
@@ -99,6 +105,10 @@
         $(".gavInfo").click(function(){
             var opts = $(this).data("options");
             var gav = opts.split(',');
+
+            $.post("<c:url value="/jcre/edit"/>"+"?t="+new Date().getTime(),{g:gav[0],a:gav[1],v:gav[2]},function(data){
+
+            });
 
             var mvn = $.v5mr.maven(gav);
             $("#maven_panel").empty();

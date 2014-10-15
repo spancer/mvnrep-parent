@@ -15,6 +15,7 @@ public class JarTypeInfo implements Serializable {
     private String pack;
     private String updatetime;
     private int versionCount;
+    private Long clickRatio;         //这一类包的点击率
 
     public Long getJtiId() {
         return jtiId;
@@ -88,9 +89,17 @@ public class JarTypeInfo implements Serializable {
         this.versionCount = versionCount;
     }
 
+    public Long getClickRatio() {
+        return clickRatio;
+    }
+
+    public void setClickRatio(Long clickRatio) {
+        this.clickRatio = clickRatio;
+    }
+
     @Override
     public String toString() {
-        return "SearchInfo{" +
+        return "JarTypeInfo{" +
                 "jtiId=" + jtiId +
                 ", id='" + id + '\'' +
                 ", groupId='" + groupId + '\'' +
@@ -100,6 +109,7 @@ public class JarTypeInfo implements Serializable {
                 ", pack='" + pack + '\'' +
                 ", updatetime='" + updatetime + '\'' +
                 ", versionCount=" + versionCount +
+                ", clickRatio=" + clickRatio +
                 '}';
     }
 }

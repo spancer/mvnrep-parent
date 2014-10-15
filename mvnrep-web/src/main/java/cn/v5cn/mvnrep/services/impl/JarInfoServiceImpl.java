@@ -63,6 +63,16 @@ public class JarInfoServiceImpl implements JarInfoService {
         return result;
     }
 
+    @Override
+    public JarInfo findByGAR(String g, String a, String v) {
+        return jarInfoDao.findByGAR(g,a,v);
+    }
+
+    @Override
+    public Long updateClickRatio(Long jarInfoId, Long clickRatio) {
+        return jarInfoDao.updateClickRatio(jarInfoId,clickRatio);
+    }
+
     private String[] versionType(String version){
         if(StringUtils.contains(version.toLowerCase(),"-a")){
             return new String[]{"alpha","bg-red"};

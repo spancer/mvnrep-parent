@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../fonts/font1.woff2');
+    src: url('../fonts/font2.woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 html{margin:0;padding:0;border:0;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
 body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, q, dl, dt, dd, ol, ul, li, fieldset, form, legend, caption, tbody, tfoot, thead, article, aside, dialog, figure, footer, header, hgroup, nav, section{margin:0;padding:0;border:0;font-size:14px;font:inherit;vertical-align:baseline;}
 article, aside, details, figcaption, figure, dialog, footer, header, hgroup, menu, nav, section{display:block;}
@@ -32,7 +39,7 @@ svg:not(:root){overflow:hidden;}
 figure{margin:1em 40px;}
 hr{height:0;-moz-box-sizing:content-box;box-sizing:content-box;}
 pre{overflow:auto;}
-code,kbd,pre,samp{font-family:monospace, monospace;font-size:1em;}
+code,kbd,pre,samp{font-family:'Open Sans',monospace, monospace;font-size:1em;}
 button,input,optgroup,select,textarea{margin:0;font:inherit;}
 button{overflow:visible;}
 button,select{text-transform:none;}
