@@ -46,7 +46,7 @@ public class IndexAction {
     @RequestMapping(value = "/search/{s}",method = RequestMethod.GET)
     public String searchList(@PathVariable String s,ModelMap modelMap) throws IOException{
         searchKeyService.addOrUpdateSearchKey(s);
-        String searchUrl = "http://search.maven.org/solrsearch/select?q="+s+"&rows=20&wt=json";
+        String searchUrl = "http://search.maven.org/solrsearch/select?q="+s+"&rows=200&wt=json";
         ObjectMapper mapper = new ObjectMapper();
         Map<String,Map> result = mapper.readValue(HttpUtils.getResult(searchUrl),Map.class);
         HttpUtils.closeHttpResponse();
@@ -60,7 +60,7 @@ public class IndexAction {
     public String componesVersionList(@PathVariable String g,@PathVariable String a,ModelMap modelMap) throws IOException{
         String q = "http://search.maven.org/solrsearch/select?q=g%3A%22";
         String z = "%22%20AND%20a%3A%22";
-        String h = "%22&rows=20&core=gav&wt=json";
+        String h = "%22&rows=200&core=gav&wt=json";
         String zh = q+g+z+a+h;
 
         jarTypeClickRatioService.addOrUpdateClickRatio(g,a);

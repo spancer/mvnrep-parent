@@ -53,5 +53,12 @@
                 $("#serachHeader").removeClass('fixed-top');
             }
         });
+        $("#searchVal").keydown(function(e){
+            if(13 === e.keyCode){
+                var sv = $("#searchVal").val();
+                var url = "<c:url value="/search"/>"+"/"+sv;
+                location.href = url;
+            }
+        });
     });
 </script>

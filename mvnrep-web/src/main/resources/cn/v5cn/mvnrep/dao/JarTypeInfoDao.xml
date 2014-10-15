@@ -5,7 +5,7 @@
         insert into jarTypeInfo(id,groupId,artifactId,latestVersion,repositoryId,pack,updatetime,versionCount) values(#{id},#{groupId},#{artifactId},#{latestVersion},#{repositoryId},#{pack},#{updatetime},#{versionCount})
     </insert>
     <select id="findByIdAndLastVersion" resultType="JarTypeInfo">
-        select jtiId,latestVersion from jarTypeInfo where id=#{id}
+        select * from jarTypeInfo where id=#{id}
     </select>
     <update id="updateLastVersionAndVersionCount">
         update jarTypeInfo set latestVersion=#{latestVersion},versionCount=#{versionCount} where jtiId=#{jtiId}
