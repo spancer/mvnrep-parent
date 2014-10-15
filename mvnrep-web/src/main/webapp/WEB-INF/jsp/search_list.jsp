@@ -58,9 +58,9 @@
             </div>
         </div>
         <div class="panel" style="margin: 0 10px 10px 10px;">
-            <div class="panel-head">没想好</div>
+            <div class="panel-head">连接</div>
             <div class="panel-body">
-
+                <a href="http://www.v5cn.cn" target="_blank">V5Blog</a>
             </div>
         </div>
     </div>

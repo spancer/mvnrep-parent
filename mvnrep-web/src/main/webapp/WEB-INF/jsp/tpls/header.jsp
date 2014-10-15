@@ -12,7 +12,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>V5MR</title>
+    <meta name="keywords" content="V5科技,java,门户,CMS,功能性站点" />
+    <meta name="description" content="V5科技是一家专门致力于java相关软件开发和承接各种企业门户和功能性站点开发的公司。" />
+    <title>V5MR | V5科技</title>
     <link type="text/css" rel="stylesheet" href="<c:url value="/r/css/pintuer.css"/>">
     <link type="text/css" rel="stylesheet" href="<c:url value="/r/css/github.css"/>">
     <link type="text/css" rel="stylesheet" href="<c:url value="/r/css/style.css"/>">
@@ -23,7 +25,9 @@
 </head>
 <body>
     <div class="layout doc-header fixed fixed-top">
-        <div class="x4"></div>
+        <div class="x4">
+            <a href="/" class="logo" >V5<span>MR</span></a>
+        </div>
         <div class="x4" style="height: 120px;">
             <div class="form-group">
                 <div class="field">

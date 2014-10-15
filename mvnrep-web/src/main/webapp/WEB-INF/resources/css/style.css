@@ -165,3 +165,21 @@ blockquote.hero.hero-default small {
     -moz-transform: rotate(3deg);
     -webkit-transform: rotate(3deg);
 }
+
+a.logo {
+    font-size: 30px;
+    color: #2e2e2e;
+    float: left;
+    line-height: 110px;
+    padding-left: 20px;
+    text-transform: uppercase;
+}
+
+a.logo:hover, a.logo:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+a.logo span {
+    color: #FF6C60;
+}
