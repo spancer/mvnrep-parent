@@ -8,6 +8,6 @@
         select * from jarTypeInfo where id=#{id}
     </select>
     <update id="updateLastVersionAndVersionCount">
-        update jarTypeInfo set latestVersion=#{latestVersion},versionCount=#{versionCount} where jtiId=#{jtiId}
+        update jarTypeInfo set latestVersion=#{lastVersion},versionCount=#{versionCount} where jtiId=#{jtiId}
     </update>
 </mapper>
